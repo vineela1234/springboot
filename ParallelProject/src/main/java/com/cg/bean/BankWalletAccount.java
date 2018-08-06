@@ -1,7 +1,5 @@
 package com.cg.bean;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,18 +12,16 @@ public class BankWalletAccount {
 	private String phoneNum;
 	private String email;
 	private double balanceAmount;
-	Date date;
+	
 
-
-	public BankWalletAccount(int id, String custName, String phoneNum, String email, double balanceAmount,
-			Date date) {
+	public BankWalletAccount(int id, String custName, String phoneNum, String email, double balanceAmount) {
 		super();
 		this.id = id;
 		this.custName = custName;
 		this.phoneNum = phoneNum;
 		this.email = email;
 		this.balanceAmount = balanceAmount;
-		this.date = date;
+		
 	}
 
 
@@ -74,18 +70,10 @@ public class BankWalletAccount {
 		this.balanceAmount = balanceAmount;
 	}
 
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
 	@Override
 	public String toString() {
 		return "BankWalletAccount [id=" + id + ", custName=" + custName + ", phoneNum=" + phoneNum + ", email=" + email
-				+ ", balanceAmount=" + balanceAmount + ", date=" + date + "]";
+				+ ", balanceAmount=" + balanceAmount + "]";
 	}
 
 

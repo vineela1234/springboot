@@ -1,23 +1,19 @@
 package com.cg;
 
-import com.cg.bean.BankWalletAccount;
+import static org.junit.Assert.*;
 
+import com.cg.bean.BankWalletAccount;
 import com.cg.exception.BankException;
 import com.cg.service.IWalletService;
 import com.cg.service.WalletServiceImpl;
 
 import org.junit.Test;
 import org.junit.Before;
-import junit.framework.TestCase;
 
 
-/**
- * Unit test for simple App.
- */
 public class AppTest 
-    extends TestCase
+    
 {
-   
     
     private IWalletService service;
 
@@ -162,9 +158,12 @@ public class AppTest
 		account.setCustName("Harika");
 		account.setEmail("harika@gmail.com");
 		account.setBalanceAmount(-10);
+		System.out.println(account);
+		
 		try {
 			service.createAccount(account);
 		} catch (BankException e) {
+			e.printStackTrace();
 			assertEquals("Balance cannot be less than zero", e.getMessage());
 		}
 	}
@@ -181,34 +180,6 @@ public class AppTest
 			assertNotNull(s);
 		} catch (BankException e) {
 			assert (e.getMessage()) != null;
-		}
-	}
-
-	@Test
-	public void testShowBalanceForPhoneNumDoesNotExist() {
-		try {
-			service.showBalance("8987562331");
-		} catch (BankException e) {
-			assertEquals("Exhausted Resultset", e.getMessage());
-		}
-	}
-	@Test
-	public void testShowBalanceForPhoneNum2() {
-		try {
-			service.showBalance("a bcdefghu");
-		} catch (BankException e) {
-			assertEquals("Mobile number should be 10 digits", e.getMessage());
-		}
-	}
-
-
-	@Test
-	public void testShowBalanceForPhoneNum() {
-		try {
-			service.showBalance("9848516565");
-		} catch (BankException e) {
-			assertEquals("Exhausted Resultset",
-					e.getMessage());
 		}
 	}
 
@@ -237,18 +208,6 @@ public class AppTest
 	}
 
 	@Test
-	public void testDeposit() {
-		BankWalletAccount account = new BankWalletAccount();
-		account.setPhoneNum("9790971020");
-		try {
-			service.deposit(account.getPhoneNum(), 350);
-			assertNotNull(account);
-		} catch (BankException e) {
-			assert (e.getMessage()) != null;
-		}
-	}
-
-	@Test
 	public void testWithdrawForMobile() {
 		BankWalletAccount account = new BankWalletAccount();
 		account.setPhoneNum("87873408");
@@ -260,38 +219,5 @@ public class AppTest
 		}
 	}
 
-	@Test
-	public void testWithdraw() {
-		BankWalletAccount account = new BankWalletAccount();
-		account.setPhoneNum("9790971020");
-		try {
-			service.withdraw(account.getPhoneNum(), 350);
-			assertNotNull(account);
-		} catch (BankException e) {
-			assert (e.getMessage()) != null;
-		}
-	}
 
-	@Test
-	public void testFundTransfer() {
-			try {
-			assertTrue(service.fundTransfer("9889123450",
-					"9889198892", 300));
-		} catch (BankException e) {
-			assert (e.getMessage()) != null;
-		}
-	}
-
-	@Test
-	public void testPrintTransactionDetails() {
-		BankWalletAccount account = new BankWalletAccount();
-		account.setPhoneNum("9889123450");
-		try {
-			BankWalletAccount account2 = service
-					.printTransactionDetails(account.getPhoneNum());
-			assertNotNull(account2);
-		} catch (BankException e) {
-			assert (e.getMessage()) != null;
-		}
-	}
 }

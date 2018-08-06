@@ -9,10 +9,11 @@ import com.cg.bean.BankWalletAccount;
 import com.cg.exception.BankException;
 
 public class WalletDaoImpl implements IWalletDao {
-	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
-	static private EntityManager em = emf.createEntityManager();
+	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
+	private EntityManager em = emf.createEntityManager();
 	@Override
 	public String createAccount(BankWalletAccount account) throws BankException {
+
 		em.getTransaction().begin();
 		em.persist(account);
 		em.getTransaction().commit();
