@@ -1,13 +1,14 @@
 package com.cg.bean;
 
-@Entity
+import java.time.LocalDateTime;
+
 public class BankWalletAccount {
 
 	private String custName;
 	private String phoneNum;
 	private String email;
 	private double balanceAmount;
-	String date;
+	LocalDateTime date;
 
 	public String getCustName() {
 		return custName;
@@ -41,11 +42,11 @@ public class BankWalletAccount {
 		this.balanceAmount = balanceAmount;
 	}
 
-	public String getDate() {
+	public LocalDateTime getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(LocalDateTime date) {
 		this.date = date;
 	}
 
@@ -54,8 +55,8 @@ public class BankWalletAccount {
 	}
 
 	public BankWalletAccount(String custName, String phoneNum, String email,
-			double balanceAmount, String date) {
-		
+			double balanceAmount, LocalDateTime date) {
+		super();
 		this.custName = custName;
 		this.phoneNum = phoneNum;
 		this.email = email;
